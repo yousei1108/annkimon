@@ -2,7 +2,6 @@ package beans;
 
 import java.io.Serializable;
 import java.sql.Time;
-import java.util.List;
 
 public class Question implements Serializable{
 
@@ -12,7 +11,7 @@ public class Question implements Serializable{
 	private String category;
 	private String answer;
 	private int id;
-	private List<String> hintList;
+	private String hintList[] = new String[3];
 	private Time created_at;
 	public User getUser() {
 		return user;
@@ -38,17 +37,17 @@ public class Question implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public List<String> getHintList() {
-		return hintList;
-	}
-	public void setHintList(List<String> hintList) {
-		this.hintList = hintList;
-	}
 	public Time getCreated_at() {
 		return created_at;
 	}
 	public void setCreated_at(Time created_at) {
 		this.created_at = created_at;
+	}
+	public String[] getHintList() {
+		return hintList;
+	}
+	public void setHintList(String hintList[]) {
+		this.hintList = hintList;
 	}
 
 }
