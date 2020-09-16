@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.List;
 
-public class question implements Serializable{
+public class Question implements Serializable{
 
-	public question() {}
+	public Question() {}
 
 	private User user;
 	private String category;
