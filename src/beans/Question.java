@@ -7,17 +7,19 @@ public class Question implements Serializable{
 
 	public Question() {}
 
-	private User user;
+
+	private String userName;
 	private String category;
 	private String answer;
 	private int id;
 	private String hintList[] = new String[3];
 	private Time created_at;
-	public User getUser() {
-		return user;
+
+	public String getUserName() {
+		return userName;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getCategory() {
 		return category;

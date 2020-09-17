@@ -24,11 +24,11 @@ public class QuestionDAO {
 	//--------------------------------------------------------------------
 	//ユーザー毎の問題を全て選択し、問題のリストを返すメソッド。
 	//検索に使用されるのは、ユーザー名のみ。
-	//使用する際は、ユーザー名を格納した User インスタンスを
-	//Question インスタンスに保存し、Questionインスタンスを引数として使用。
+	//使用する際は、ユーザー名をString型で引数として、指定する。
+	//ユーザー名は、ログイン時に保存しているセッションから取得すればよい。
 	//返り値は、List< Question >型の、ArrayList を返す。
 	//--------------------------------------------------------------------
-	public List<Question> allQuestionSelect( Question imputQuestion ) {
+	public List<Question> allQuestionSelect( String userName ) {
 
 		List<Question> questionList = new ArrayList<Question>();
 
@@ -41,13 +41,14 @@ public class QuestionDAO {
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, imputQuestion.getUser().getUserName());
+			pstmt.setString( 1, userName );
 
 			ResultSet rs = pstmt.executeQuery();
 
 			while( rs.next() ) {
 
 				Question question = new Question();
+				question.setId( rs.getInt( "id" ) );
 				question.setCategory( rs.getString("category") );
 				question.setAnswer( rs.getString("answer") );
 				question.setCreated_at( rs.getTime("created_at") );

@@ -16,8 +16,14 @@ public class UserDAO {
 	final String DB_USER = "root";
 	final String DB_PASS = "Yousei8239";
 
-	//ユーザー名を受け取り、それに応じたユーザー名、パスワードを返すメソッド
-	public User userSelect( User imputUser ) {
+	//------------------------------------------------------------------------
+	//                             userSelect
+	//------------------------------------------------------------------------
+	//ユーザー名を受け取り、データベースから合致した単一の Column を返すメソッド
+	//ユーザー名は、String型で受け取り、返り値としては、String userName , String password
+	//int id が格納された、 User インスタンスを返す。
+	//-------------------------------------------------------------------------
+	public User userSelect( String userName ) {
 
 		//返り値用の、ユーザーインスタンスの生成
 		//接続用インスタンスの生成、null代入
@@ -36,7 +42,7 @@ public class UserDAO {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			//メソッド実行時に引数で受け取った、ユーザーインスタンスからユーザー名を
 			//受け取り、そのユーザー名をSQLに挿入
-			pstmt.setString(1, imputUser.getUserName());
+			pstmt.setString( 1 , userName );
 			//Resultsetインスタンスに、結果のカーソルを保存
 			ResultSet rs = pstmt.executeQuery();
 
@@ -66,7 +72,18 @@ public class UserDAO {
 			return selectUser;
 		}
 
-	//引数に指定した、ユーザー名、パスワードをDBに登録するメソッド
+	//------------------------------------------------------------------ここまで
+
+
+
+	//--------------------------------------------------------------------------
+	//                            userInsert
+	//--------------------------------------------------------------------------
+	//引数に指定した、ユーザー名、パスワードをデータベースに登録するメソッド。
+	//それぞれユーザー名と、パスワードを格納した、 User インスタンスを
+	//引数に指定し、データベースに登録を行う。
+	//帰り値は、 SQL にて実行された行数を int型 で返す。
+	//---------------------------------------------------------------------------
 	public int userInsert( User imputUser ) {
 
 		int resultColumn = 0;
@@ -106,9 +123,19 @@ public class UserDAO {
 		//初期値である０のままである
 		return resultColumn;
 	}
+	//-------------------------------------------------------------------ここまで
 
-	//引数で指定された、ユーザー名に応じて、ユーザーデータをDBから削除するメソッド
-	public int userDelete( User imputUser ) {
+
+
+	//----------------------------------------------------------------------------
+	//                               userDelete
+	//----------------------------------------------------------------------------
+	//引数で指定された、ユーザー名に応じて、ユーザーデータをデータベースから
+	//削除するメソッド。
+	//引数は、String型で指定する。
+	//返り値は、 SQL にて実行された行数を int型 で返す。
+	//----------------------------------------------------------------------------
+	public int userDelete( String userName ) {
 
 		int resultColumn = 0;
 		Connection con = null;
@@ -125,7 +152,7 @@ public class UserDAO {
 
 			//引数で指定した、ユーザーインスタンスのユーザー名を受け取り
 			//SQLにセットする
-			pstmt.setString(1, imputUser.getUserName());
+			pstmt.setString( 1, userName );
 
 			resultColumn = pstmt.executeUpdate();
 
@@ -143,10 +170,21 @@ public class UserDAO {
 
 		return resultColumn;
 	}
+	//------------------------------------------------------------ここまで
 
+
+
+	//---------------------------------------------------------------------
+	//                            userUpdate
+	//---------------------------------------------------------------------
+	//
+	//
+	//
+	//
+	//---------------------------------------------------------------------
 	//引数で更新前のユーザーインスタンスと、変更後のユーザー情報が含まれた
 	//ユーザーインスタンスを指定し、DBのユーザー名、パスワードを更新するメソッド
-	public int userUpdate( User afterUser , User beforeUser ) {
+	public int userUpdate( String userName , User updateUser ) {
 
 		int resultColumn = 0;
 		Connection con = null;
@@ -165,9 +203,9 @@ public class UserDAO {
 			//ユーザー名、パスワードを受けとり、更新用の文字列にセットし
 			//更新前のユーザーインスタンスから、ユーザー名を受け取り
 			//検索値として、セットする
-			pstmt.setString(1, afterUser.getUserName());
-			pstmt.setString(2, afterUser.getPassword());
-			pstmt.setString(3, beforeUser.getUserName());
+			pstmt.setString(1, updateUser.getUserName());
+			pstmt.setString(2, updateUser.getPassword());
+			pstmt.setString(3, userName );
 
 			resultColumn = pstmt.executeUpdate();
 		}catch( ClassNotFoundException e ) {
