@@ -10,6 +10,12 @@ import java.util.List;
 
 import beans.Question;
 
+/**
+ * questionテーブルに関する、DAOクラス<br>
+ * 提供するメソッドは、問題の全取得( ユーザー毎 )、問題の新規登録、問題の更新、問題の削除
+ * @author yousei
+ */
+
 public class QuestionDAO {
 
 	private final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
@@ -28,6 +34,14 @@ public class QuestionDAO {
 	//ユーザー名は、ログイン時に保存しているセッションから取得すればよい。
 	//返り値は、List< Question >型の、ArrayList を返す。
 	//--------------------------------------------------------------------
+
+	/**
+	 * ユーザー名を引数に、データベースを検索し、問題の一覧をリストにして返す
+	 * @param userName 問題を作成したユーザー名
+	 * @return 問題の内容をQuestionインスタンスに保存し、それをリスト化したもの<br>
+	 			Questionインスタンスには、int id , String category , String answer ,<br>
+	 			Time created_at , String hintList[] が格納される。
+	 */
 	public List<Question> allQuestionSelect( String userName ) {
 
 		List<Question> questionList = new ArrayList<Question>();
@@ -91,6 +105,12 @@ public class QuestionDAO {
 	//String hintList[] を格納した、Question インスタンスを引数とする。
 	//返り値は、 SQL にて実行された行数を int型 で返す。
 	//------------------------------------------------------------------
+
+	/**
+	 * 引数に指定した問題情報を、データベースに登録する。
+	 * @param imputQuestion 登録したい問題情報( String category , String answer , String hintList[] を格納しておく)
+	 * @return SQL実行による、変更行数
+	 */
 	public int insertQuestion( Question imputQuestion ) {
 
 		int resultColumn = 0;
@@ -140,7 +160,13 @@ public class QuestionDAO {
 	//Questionインスタンスに保存し、それを引数とする。
 	//返り値は、 SQL にて実行された行数を int型 で返す。
 	//--------------------------------------------------------------
-	public int deleteQuestion( Question imputQuestion ) {
+
+	/**
+	 * 引数に指定した、問題のIDを検索値として、データベースから該当のレコードを削除する。
+	 * @param questionId 削除する問題のID
+	 * @return SQL実行による、変更行数
+	 */
+	public int deleteQuestion( int questionId ) {
 
 		int resultColumn = 0;
 
@@ -153,7 +179,7 @@ public class QuestionDAO {
 
 		PreparedStatement pstmt = con.prepareStatement( sql );
 
-		pstmt.setInt( 1 ,  imputQuestion.getId() );
+		pstmt.setInt( 1 ,  questionId );
 
 		resultColumn = pstmt.executeUpdate();
 
@@ -183,6 +209,14 @@ public class QuestionDAO {
 	//それをデータベースでの、検索値とする。（該当の問題のデータを更新する)
 	//返り値には、 SQL を実行した行数を int型 で返す。
 	//-------------------------------------------------------------
+
+	/**
+	 * 引数のQuestionインスタンスから、idを取得し、それに合致する問題のレコードを<br>
+	 * 引数のQuestionインスタンスからのパラメーターで更新する
+	 * @param imputQuestion 更新したい問題の情報( String category , String answer , String hintList[] )
+	 *  + 更新を行う id を格納
+	 * @return SQL実行による、変更行数
+	 */
 	public int updateQuestion( Question imputQuestion ) {
 
 		int resultColumn = 0;

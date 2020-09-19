@@ -2,8 +2,15 @@ package beans;
 
 import java.io.Serializable;
 
+/**
+ * ユーザーデータを格納するためのクラス
+ * @author yousei
+ *
+ */
 public class User implements Serializable {
 
+	
+	
 	private String userName;
 	private String password;
 	private int    id;
