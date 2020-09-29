@@ -34,7 +34,8 @@ public class UserDAO {
 	/**
 	 * ユーザー名を引数に、userテーブルの検索を行い、単一のユーザーデータを返す。
 	 * @param userName 検索用ユーザー名
-	 * @return 検索に合致した単一のユーザーデータ( Userインスタンス )
+	 * @return 検索に合致した単一のユーザーデータ( Userインスタンス )<br>
+	 * String userName , String password , int id を格納
 	 */
 
 	public User userSelect( String userName ) {
@@ -52,7 +53,7 @@ public class UserDAO {
 			con = DriverManager.getConnection( JDBC_URL , DB_USER , DB_PASS );
 
 			//ユーザー名を検索ワードとした、SQLの発行
-			String sql = "select * from user where user_name = ?";
+			String sql = "select * from user_accounts where user_name = ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			//メソッド実行時に引数で受け取った、ユーザーインスタンスからユーザー名を
 			//受け取り、そのユーザー名をSQLに挿入
@@ -115,7 +116,7 @@ public class UserDAO {
 			con = DriverManager.getConnection( JDBC_URL , DB_USER , DB_PASS );
 
 			//userテーブルに、新たに、ユーザー名とパスワードを追加するSQLの作成
-			String sql = "insert into user( user_name , password ) values( ? , ? )";
+			String sql = "insert into user_accounts( user_name , password ) values( ? , ? )";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
@@ -172,7 +173,7 @@ public class UserDAO {
 			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 
 			//ユーザー名を検索値に、DBから該当のユーザーを消去する
-			String sql = "delete from user where user_name = ?";
+			String sql = "delete from user_accounts where user_name = ?";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
@@ -228,7 +229,7 @@ public class UserDAO {
 			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 
 			//前ユーザー名を検索値とし、ユーザー名とパスワードの更新を行うSQL文の作成
-			String sql = "update user set user_name = ? , password = ? where = ?";
+			String sql = "update user_accounts set user_name = ? , password = ? where user_name = ?";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 

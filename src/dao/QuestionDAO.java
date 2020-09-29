@@ -51,7 +51,7 @@ public class QuestionDAO {
 			Class.forName(DRIVER_NAME);
 			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 
-			String sql = "select * from question where user_name = ?";
+			String sql = "select * from questions where user_name = ?";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
@@ -66,6 +66,7 @@ public class QuestionDAO {
 				question.setCategory( rs.getString("category") );
 				question.setAnswer( rs.getString("answer") );
 				question.setCreated_at( rs.getTime("created_at") );
+				question.setUserName( rs.getString( "user_name" ) );
 
 				String hint_1 = rs.getString( "hint_1" );
 				String hint_2 = rs.getString( "hint_2" );
@@ -108,7 +109,7 @@ public class QuestionDAO {
 
 	/**
 	 * 引数に指定した問題情報を、データベースに登録する。
-	 * @param imputQuestion 登録したい問題情報( String category , String answer , String hintList[] を格納しておく)
+	 * @param imputQuestion 登録したい問題情報( String category , String answer , String hintList[] , String userName を格納しておく)
 	 * @return SQL実行による、変更行数
 	 */
 	public int insertQuestion( Question imputQuestion ) {
@@ -120,15 +121,16 @@ public class QuestionDAO {
 			Class.forName( DRIVER_NAME );
 			con = DriverManager.getConnection( JDBC_URL, DB_USER, DB_PASS );
 
-			String sql = "insert into question( category , answer , hint_1 , hint_2 , hint_3 ) values( ?,?,?,?,? ) ";
+			String sql = "insert into questions( category , answer , user_name , hint_1 , hint_2 , hint_3 ) values( ?,?,?,?,?,? ) ";
 
 			PreparedStatement pstmt = con.prepareStatement( sql );
 
 			pstmt.setString( 1 , imputQuestion.getCategory() );
 			pstmt.setString( 2 , imputQuestion.getAnswer() );
-			pstmt.setString( 3 , imputQuestion.getHintList()[0] );
-			pstmt.setString( 4 , imputQuestion.getHintList()[1] );
-			pstmt.setString( 5 , imputQuestion.getHintList()[2] );
+			pstmt.setString( 3 , imputQuestion.getUserName());
+			pstmt.setString( 4 , imputQuestion.getHintList()[0] );
+			pstmt.setString( 5 , imputQuestion.getHintList()[1] );
+			pstmt.setString( 6 , imputQuestion.getHintList()[2] );
 
 			resultColumn = pstmt.executeUpdate();
 
@@ -175,7 +177,7 @@ public class QuestionDAO {
 		Class.forName( DRIVER_NAME );
 		con = DriverManager.getConnection( JDBC_URL, DB_USER, DB_PASS );
 
-		String sql = "delete from question where id = ?";
+		String sql = "delete from questions where id = ?";
 
 		PreparedStatement pstmt = con.prepareStatement( sql );
 
@@ -226,7 +228,7 @@ public class QuestionDAO {
 			Class.forName( DRIVER_NAME );
 			con = DriverManager.getConnection( JDBC_URL, DB_USER, DB_PASS );
 
-			String sql = "update question set category = ? , answer = ? , hint_1 = ? , hint_2 = ? , hint_3 = ? where id = ?";
+			String sql = "update questions set category = ? , answer = ? , hint_1 = ? , hint_2 = ? , hint_3 = ? where id = ?";
 
 			PreparedStatement pstmt = con.prepareStatement( sql );
 
