@@ -98,6 +98,59 @@ public class QuestionDAO {
 	//----------------------------------------------------------ここまで
 
 
+	//----------------------------------------------------------------------
+	//                    questionSelect
+	//----------------------------------------------------------------------
+	/**
+	 * 問題のIDを受け取り、データベース上にて合致する問題のデータを返す。
+	 * @param questionId データベースから検索したい問題のIDを指定
+	 * @return 問題のデータをQuestionインスタンスに保存し返す。
+	 */
+
+	public Question questionSelect( int questionId ) {
+
+		Question selectQuestion = new Question();
+
+		try {
+
+			Class.forName( DRIVER_NAME );
+			con = DriverManager.getConnection( JDBC_URL, DB_USER, DB_PASS );
+
+			String sql = "select * from questions where id = ?";
+			PreparedStatement pstmt = con.prepareStatement( sql );
+			pstmt.setInt( 1 , questionId );
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while( rs.next() ) {
+				selectQuestion.setId( rs.getInt( "id" ) );
+				selectQuestion.setUserName( rs.getString( "user_name" ) );
+				selectQuestion.setAnswer( rs.getString( "answer" ) );
+				selectQuestion.setCategory( rs.getString( "category" ) );
+				selectQuestion.setCreated_at( rs.getTime( "created_at" ) );
+				selectQuestion.getHintList()[0] = rs.getString( "hint_1" );
+				selectQuestion.getHintList()[1] = rs.getString( "hint_2" );
+				selectQuestion.getHintList()[2] = rs.getString( "hint_3" );
+			}
+
+		}catch( ClassNotFoundException e ){
+			e.printStackTrace();
+		}catch ( SQLException e ){
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			}catch( SQLException e ) {
+				e.printStackTrace();
+			}
+		}
+		return selectQuestion;
+
+	}
+
+	//------------------------------------------------------------ここまで
+
+
 	//------------------------------------------------------------------
 	//                      insertQuestion
 	//------------------------------------------------------------------
