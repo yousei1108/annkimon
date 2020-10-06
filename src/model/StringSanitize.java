@@ -11,25 +11,17 @@ public class StringSanitize {
 	/**
 	 * ユーザーが入力した情報をhtmlで表示する際に、エスケープ処理を行い、文字列を返す
 	 * @param sanitizeString エスケープ処理を行いたい文字列
-	 * @return XSS対策として、エスケープ処理を行った文字列、元々nullであれば、空白で返す。
+	 * @return XSS対策として、エスケープ処理を行った文字列を返す。
 	 */
 	public static String escapeHTML( String sanitizeString ) {
 
-		if( sanitizeString != null ) {
+			sanitizeString = sanitizeString.replaceAll( "&", "&amp;");
+			sanitizeString = sanitizeString.replaceAll( "<", "&lt;");
+			sanitizeString = sanitizeString.replaceAll( ">", "&gt;");
+			sanitizeString = sanitizeString.replaceAll( "\"", "&quot;");
+			sanitizeString = sanitizeString.replaceAll( "'", "&apos;");
 
-			sanitizeString = sanitizeString.replaceAll("&", "& amp;");
-			sanitizeString = sanitizeString.replaceAll("<", "& lt;");
-			sanitizeString = sanitizeString.replaceAll(">", "& gt;");
-			sanitizeString = sanitizeString.replaceAll("\"", "&quot;");
-			sanitizeString = sanitizeString.replaceAll("'", "&apos;");
-
-		}else {
-
-			sanitizeString = "";
-
-		}
-
-		return sanitizeString;
+			return sanitizeString;
 
 	}
 
