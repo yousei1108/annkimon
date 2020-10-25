@@ -22,4 +22,8 @@ public class LoginProcessError implements Error {
 
 	}
 
+	public String getLoginError() {
+		return loginError;
+	}
+
 }

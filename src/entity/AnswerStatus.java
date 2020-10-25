@@ -1,6 +1,8 @@
 package entity;
 
-public class AnswerStatus {
+import java.io.Serializable;
+
+public class AnswerStatus implements Serializable {
 
 	public int questionTotal;
 	public int answerTotal;
@@ -18,4 +20,5 @@ public class AnswerStatus {
 			}
 		}
 	}
+
 }

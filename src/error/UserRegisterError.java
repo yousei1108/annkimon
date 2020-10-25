@@ -23,4 +23,16 @@ public class UserRegisterError implements Error {
 		}
 		return false;
 	}
+
+	public String getNameError() {
+		return nameError;
+	}
+
+	public String getPasswordError() {
+		return passwordError;
+	}
+
+	public String getExecutionError() {
+		return executionError;
+	}
 }

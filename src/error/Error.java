@@ -1,6 +1,8 @@
 package error;
 
-public interface Error {
+import java.io.Serializable;
+
+public interface Error extends Serializable {
 
 	public boolean hasError();
 

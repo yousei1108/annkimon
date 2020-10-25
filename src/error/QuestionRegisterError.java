@@ -26,4 +26,20 @@ public class QuestionRegisterError implements Error {
 		return false;
 	}
 
+	public String getCorrectAnswerError() {
+		return correctAnswerError;
+	}
+
+	public String getCategoryError() {
+		return categoryError;
+	}
+
+	public String getHintError() {
+		return hintError;
+	}
+
+	public String getExecutionError() {
+		return executionError;
+	}
+
 }
