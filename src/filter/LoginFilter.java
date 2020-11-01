@@ -43,8 +43,6 @@ public class LoginFilter implements Filter {
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		String userName = ( String )session.getAttribute( "userName" );
 
-		System.out.println("フィルター実行");
-
 		if( userName == null ) {
 			( ( HttpServletResponse ) response).sendRedirect("/annkimon/");
 		}else {

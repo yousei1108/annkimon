@@ -73,7 +73,6 @@ public class SelectCategoryServlet extends HttpServlet {
 
 		session.setAttribute( "answerStatus" , status );
 
-		System.out.println("こっち");
 		response.sendRedirect("/annkimon/main/answer/question");
 
 	}

@@ -36,15 +36,12 @@ public class AnswerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		System.out.println("こっち");
-
 		@SuppressWarnings("unchecked")
 		List<Question> questionlist = ( List<Question> )request.getSession().getAttribute("questionList");
 		if( questionlist == null ) {
 			response.sendRedirect( "/annkimon/main" );
 		}else {
 			request.setAttribute( "answerQuestion" , questionlist.get(0) );
-			System.out.println("こっちにきてるよ" + questionlist.size());
 			request.getRequestDispatcher("/WEB-INF/jsp/main/Answer.jsp").forward(request, response);
 		}
 
