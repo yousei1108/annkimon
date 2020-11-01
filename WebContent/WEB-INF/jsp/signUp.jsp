@@ -18,7 +18,7 @@
 
         <h1>新規登録</h1>
 
-        <form class="form-wrapper" action="/annkimon/UserRegisterServlet" method="POST">
+        <form class="form-wrapper" action="/annkimon/signup" method="POST">
             <input class="form-box" class="item" type="text" name="userName" placeholder="ユーザー名( 半角英数字 )">
             <c:if test="${ not empty error.nameError }"><p class="message">${ error.nameError }</p></c:if>
             <input class="form-box" class="item" type="password" name="password" placeholder="パスワード( 半角英数字８文字以上 )">

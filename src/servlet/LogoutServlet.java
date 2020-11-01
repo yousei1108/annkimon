@@ -8,21 +8,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import error.UserRegisterError;
-import service.UserRegister;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class UserRegisterServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/signup")
-public class UserRegisterServlet extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserRegisterServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +31,10 @@ public class UserRegisterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
+		HttpSession session = request.getSession();
+		session.removeAttribute( "userName" );
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher( "/WEB-INF/jsp/logout.jsp" );
 		dispatcher.forward( request , response );
 
 	}
@@ -43,22 +44,7 @@ public class UserRegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		String userName = request.getParameter( "userName" );
-		String password = request.getParameter( "password" );
-
-		UserRegister register = new UserRegister();
-		UserRegisterError error = register.registerUser( userName , password );
-
-		if( error.hasError() ) {
-			request.setAttribute( "error" , error );
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
-			dispatcher.forward( request , response );
-		}else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher( "/WEB-INF/jsp/signUpOk.html" );
-			dispatcher.forward( request , response );
-		}
-
+		doGet(request, response);
 	}
 
 }

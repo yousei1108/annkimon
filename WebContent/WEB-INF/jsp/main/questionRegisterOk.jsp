@@ -8,19 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="destyle.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300;700&display=swap" rel="stylesheet">
-    <link href="css/stylesheet.css" rel="stylesheet">
+    <link href="/annkimon/css/stylesheet.css" rel="stylesheet">
 
-    <title>暗記門</title>
+    <title>問題を登録しました</title>
 </head>
 <body>
 
     <div class="wrapper" class="item">
 
-        <img src="picture/logo.png" width="120px" height="45px" >
+        <h1>問題を登録しました</h1>
 
-        <button onclick="location.href='qustionMain.html'" class="button">問題を作る</button>
-        <button onclick="location.href='responseCategory.html'" class="button">問題に挑戦する</button>
-        <button onclick="location.href='logout.html'" class="button color-gray">ログアウト</button>
+        <a href="/annkimon/main">メイン画面に戻る</a>
 
     </div>
 

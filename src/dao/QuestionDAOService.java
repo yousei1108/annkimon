@@ -1,6 +1,9 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import beans.Question;
 
@@ -21,6 +24,14 @@ public class QuestionDAOService {
 		dao.setSql( "select * from questions where user_name = ? and category = ?" );
 		dao.setString( 1 , userName );
 		dao.setString( 2 , category );
+		return dao.executeQueryStart();
+
+	}
+
+	public List<Question> selectQuestionsById( int questionId ){
+
+		dao.setSql( "select * from questions where id = ?" );
+		dao.setInt( 1 , questionId );
 		return dao.executeQueryStart();
 
 	}
@@ -56,6 +67,19 @@ public class QuestionDAOService {
 		dao.setString( 5 , question.getHint_3() );
 		dao.setInt   ( 6 , question.getId() );
 		return dao.executeUpdateStart();
+
+	}
+
+	public List<String> selectCategoryByUser( String userName ){
+
+		Set<String> categorySet = new HashSet<String>();
+		List<Question> questionList = this.selectQuestions( userName );
+
+			for( Question question : questionList ) {
+				categorySet.add( question.getCategory() );
+			}
+
+		return new ArrayList<String>( categorySet );
 
 	}
 

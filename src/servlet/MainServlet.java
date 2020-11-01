@@ -2,28 +2,23 @@ package servlet;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import error.LoginProcessError;
-import service.LoginProcess;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class MainServlet
  */
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/main")
+public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public MainServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +28,9 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		request.getRequestDispatcher( "/WEB-INF/jsp/main/main.jsp" ).forward( request , response );
+
 	}
 
 	/**
@@ -41,25 +38,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		String userName  = request.getParameter( "userName" );
-		String password = request.getParameter( "password" );
-
-		LoginProcess process = new LoginProcess();
-
-		LoginProcessError error = process.loginProcess( userName , password );
-
-		if( error.hasError() ) {
-			request.setAttribute( "error" , error );
-			RequestDispatcher dispatcher = request.getRequestDispatcher( "" );
-			dispatcher.forward( request , response );
-		}else {
-			HttpSession session = request.getSession();
-			session.setAttribute( "userName" , userName );
-			response.sendRedirect( "/annkimon/main" );
-		}
-
-
+		doGet(request, response);
 	}
 
 }

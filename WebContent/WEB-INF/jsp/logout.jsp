@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="destyle.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300;700&display=swap" rel="stylesheet">
-    <link href="stylesheet.css" rel="stylesheet">
+    <link href="css/stylesheet.css" rel="stylesheet">
 
     <title>ログアウトしました</title>
 </head>
@@ -18,7 +18,7 @@
 
         <h1>ログアウトしました</h1>
 
-        <a href="login.html">ＴＯＰ画面に戻る</a>
+        <a href="/annkimon">ＴＯＰ画面に戻る</a>
 
     </div>
 

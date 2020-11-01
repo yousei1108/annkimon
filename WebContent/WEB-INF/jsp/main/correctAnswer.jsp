@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="destyle.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300;700&display=swap" rel="stylesheet">
-    <link href="stylesheet.css" rel="stylesheet">
+    <link href="/annkimon/css/stylesheet.css" rel="stylesheet">
 
     <title>暗記門</title>
 </head>
@@ -16,11 +16,18 @@
 
     <div class="wrapper" class="item">
 
-        <h1 id="response_result">正解です！</h1>
+        <h1 id="response_result"><c:choose><c:when test="${ answer.correctCheck }">正解です！</c:when><c:otherwise>不正解です…</c:otherwise></c:choose></h1>
         <p class="text-left">正解は</p>
-        <div class="form-box">正解</div>
-        <button onclick="location.href='response.html'" class="button">次の問題へ行く</button>
-        <button onclick="location.href='main.html'" class="button color-gray">あきらめる・・・</button>
+        <div class="form-box"><c:out value="${ answerQuestion.correctAnswer }"></c:out></div>
+        <p class="text-left">あなたの解答</p>
+        <div class="form-box"><c:out value="${ answer.answerString }"></c:out></div>
+        <c:choose>
+        <c:when test="${ hasQuestion }">
+        <button onclick="location.href='/annkimon/main/answer/question'"  class="button">次の問題へ行く</button>
+        <button onclick="location.href='/annkimon/main'"  class="button color-gray">あきらめる・・・</button>
+        </c:when>
+        <c:otherwise><button onclick="location.href='/annkimon/main/answer/result'"  class="button">結果発表！</button></c:otherwise>
+        </c:choose>
 
     </div>
 

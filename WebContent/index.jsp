@@ -18,14 +18,14 @@
 
         <img src="picture/logo.png" width="120px" height="45px" >
 
-        <form class="form-wrapper" action="/annkimon/LoginServlet" method="POST">
+        <form class="form-wrapper" action="/annkimon/login" method="POST">
             <input class="form-box" class="item" type="text" name="userName" placeholder="ユーザー名">
             <input class="form-box" class="item" type="password" name="password" placeholder="パスワード">
             <input class="button" class="item" type="submit" value="ログイン">
             <c:if test="${ error.hasError() }"><p class="message">${ error.loginError }</p></c:if>
         </form>
 
-        <button onclick="location.href='/annkimon/UserRegisterServlet'" class="button" style="background-color: #d4ffd8; color: #707070;">新規登録はこちら</button>
+        <button onclick="location.href='/annkimon/signup'" class="button" style="background-color: #d4ffd8; color: #707070;">新規登録はこちら</button>
 
     </div>
 
