@@ -11,8 +11,8 @@ import java.util.List;
 public abstract class DAO<E> {
 
 	private final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-	private final String JDBC_URL = "jdbc:mysql://localhost/annkimon?characterEncoding=UTF-8&serverTimezone=JST";
-	private final String DB_USER = "root";
+	private final String JDBC_URL = "jdbc:mysql://annkimondb.cu2svyfvjnk5.ap-northeast-1.rds.amazonaws.com:3306/annkimon?characterEncoding=UTF-8&serverTimezone=JST";
+	private final String DB_USER = "dbuser";
 	private final String DB_PASS = "Yousei8239";
 
 	protected Connection con = null;

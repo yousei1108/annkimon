@@ -38,12 +38,9 @@ public class AnswerServlet extends HttpServlet {
 
 		@SuppressWarnings("unchecked")
 		List<Question> questionlist = ( List<Question> )request.getSession().getAttribute("questionList");
-		if( questionlist == null ) {
-			response.sendRedirect( "/annkimon/main" );
-		}else {
+
 			request.setAttribute( "answerQuestion" , questionlist.get(0) );
 			request.getRequestDispatcher("/WEB-INF/jsp/main/Answer.jsp").forward(request, response);
-		}
 
 	}
 
@@ -63,8 +60,8 @@ public class AnswerServlet extends HttpServlet {
 
 		AnswerCheck check = new AnswerCheck();
 		List<Question> questionList = (List<Question>)session.getAttribute( "questionList" );
-		Question question = questionList.get( 0 );
 
+		Question question = questionList.get( 0 );
 		answer = check.checkAnswer( answer , question );
 
 		status.answerStatusUpdate( answer );

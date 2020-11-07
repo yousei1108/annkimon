@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
     <link href="destyle.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300;700&display=swap" rel="stylesheet">
     <link href="css/stylesheet.css" rel="stylesheet">
@@ -25,6 +26,7 @@
             <c:if test="${ not empty error.passwordError }"><p class="message">${ error.passwordError }</p></c:if>
             <input class="button" class="item" type="submit" value="アカウント登録">
         </form>
+        <a href="/annkimon">ＴＯＰ画面に戻る</a>
 
     </div>
 

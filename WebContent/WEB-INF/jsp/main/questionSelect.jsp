@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
     <link href="destyle.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300;700&display=swap" rel="stylesheet">
     <link href="/annkimon/css/stylesheet.css" rel="stylesheet">
@@ -45,6 +46,7 @@
 
 			<input type="hidden" name="questionId" id="questionId">
        </form>
+       <button onclick="location.href='/annkimon/main'" class="button color-gray">メイン画面に戻る</button>
 
     </div>
 

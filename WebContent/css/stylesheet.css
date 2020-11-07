@@ -27,6 +27,7 @@ body{
 
 img[src="picture/logo.png"]{
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 input{
@@ -39,10 +40,12 @@ input{
     width: 100%;
     background-color: #eefff3;
     outline: none;
-    height: 50px;
+    min-height: 50px;
+    height: auto;
     font-size: large;
     display: block;
     border: #707070 solid 0.5px;
+    word-wrap: break-word;
 }
 
 .form-box::-webkit-input-placeholder{
@@ -73,6 +76,7 @@ input{
 
 h1{
     font-size: x-large;
+
 }
 
 .button{
@@ -174,10 +178,16 @@ textarea.form-box{
 
 .question-table{
     width: 100%;
+    height: 90vh;
     border-collapse: collapse;
     display: block;
-    overflow-x: scroll;
-    white-space: nowrap;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.question-table::-webkit-scrollbar{
+	display: none;
 }
 
 table tbody {
@@ -199,6 +209,9 @@ table tbody {
     font-size: 0.7em;
     color: darkgray;
     background-color: whitesmoke;
+    min-width: 80px;
+	word-break : break-all;
+
 }
 
 .question-table button{
@@ -215,4 +228,18 @@ table tbody {
     background-color: dimgray;
     -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
+}
+p.tag{
+
+	text-align: left;
+	margin-bottom: -30px;
+	margin-left: 10px;
+	color: gray;
+}
+
+.color-steelblue{
+
+	background-color: #d4ffd8;
+	color: #707070;
+
 }

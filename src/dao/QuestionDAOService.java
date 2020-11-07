@@ -1,9 +1,9 @@
 package dao;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import beans.Question;
 
@@ -72,7 +72,7 @@ public class QuestionDAOService {
 
 	public List<String> selectCategoryByUser( String userName ){
 
-		Set<String> categorySet = new HashSet<String>();
+		Set<String> categorySet = new TreeSet<String>();
 		List<Question> questionList = this.selectQuestions( userName );
 
 			for( Question question : questionList ) {
